@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block body_block %}
+{% load bootstrap4 %}
+{% if userAdditionalForm.error %}
+  <p> <strong> ERROR WITH EMAIL POP UP </strong> </p>
+{% endif %}
+  <div class="container">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form userCreateForm %}
+      {% bootstrap_form userAdditionalForm %}
+      {% buttons %}
+        <button type="submit" class="btn btn-dark">SIGN UP</button>
+      {% endbuttons %}
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block body_block %}
+{% load bootstrap4 %}
+  <p></p>
+  <div class="container">
+    {% include 'report/_report.html'%}
+    <div class="card border-light mb-3" style="width: 40rem;">
+      <div class="card-body">
+        <table class="mytable">
+          <tbody>
+              <td><form action="{% url 'report:like' pk=report.pk %}" class="">
+                <button type="submit" class="btn btn-primary btn-block btn-success">ПОДДЕРЖИВАЮ</button>
+              </form></td>
+              <td><form action="{% url 'report:unlike' pk=report.pk %}" class="">
+                <button type="submit" class="btn btn-primary btn-block btn-danger">НЕПРАВДА</button>
+              </form></td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card border-light mb-3" style="width: 40rem;">
+      <div class="card-header">
+        <h2>Добавьте Ваш комментарий:</h2>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {% bootstrap_form comment_form %}
+          {% buttons %}
+            <button type="submit" class="btn btn-dark float-right">Comment</button>
+          {% endbuttons %}
+        </form>
+      </div>
+    </div>
+
+    {% for comment in comment_list %}
+        {% include 'report/_comment.html'%}
+    {% endfor %}
+  </div>
+
+
+{% endblock %}

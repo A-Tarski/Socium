@@ -1,0 +1,107 @@
+.mytable{
+    table-layout: fixed;
+    width: 100%;
+}
+.blue{
+  color: #016bad;
+  font-size: 1.2rem;
+}
+
+.green{
+  color: #28a745;
+  font-size: 1.2rem;
+}
+
+.green-text{
+  color: #28a745;
+  font-size: 1.2rem;
+}
+
+.red{
+  color: #c82333;
+  font-size: 1.2rem;
+}
+
+.report_image{
+  height: 200px;
+}
+.header-row{
+  max-height:100px;
+  overflow:hidden;
+}
+
+.avatar{
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-comment{
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+.plate{
+    color: red;
+    border-color: red;
+    background-color: transparent;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: -100px;
+    border: 1px solid;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
+
+.plate:hover {
+  background-color: red; /* Green */
+  border-color: white;
+  color: white;
+}
+
+*{
+  word-break: break-all;
+}
+.search_item{
+  color: red;
+}
+
+.my-card-link{
+  color: #4c4d4f;
+}
+
+body{
+  background-color: #e9eaed;
+}
+
+.form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #bec1c6;
+    font-style: italic;
+  }
+.form-control::-moz-placeholder { /* Firefox 19+ */
+    color: #bec1c6;
+    font-style: italic;
+  }
+.form-control:-ms-input-placeholder { /* IE 10+ */
+    color: #bec1c6;
+    font-style: italic;
+  }
+.form-control:-moz-placeholder { /* Firefox 18- */
+    color: #bec1c6;
+    font-style: italic;
+  }

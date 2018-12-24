@@ -1,0 +1,61 @@
+<div class="card border-light mb-3" style="width: 40rem;">
+  <div class="card-header">
+    <div class="row">
+      &ensp;
+      {% if report.user.userinformation.profilePicture %}
+          <img src="{{report.user.userinformation.profilePicture.url}}" alt="" class="card-img-top avatar">
+      {% else %}
+          {% load static %}
+          <img src='{% static "base/img/avatar.png" %}' alt="" class="card-img-top avatar">
+      {% endif %}
+      &emsp;
+      <div class="">
+        <h5 ><a class="my-card-link" href="{% url 'base:personal' username=report.user.username %}" style='text-decoration : none'>@{{report.user.username}}</a></h5>
+        <p class="card-text"><small class="text-muted">{{report.created_date|timesince}}</small></p>
+      </div>
+      <form action="{% url 'plate:detail' pk=report.vehicle_plate.pk %}" class="ml-auto">
+        <button type="submit" class="ml-auto plate">{{report.vehicle_plate.plate_nubmer}}</button>
+      </form>
+    </div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><a class="my-card-link" href="{% url 'report:detail' pk=report.pk %}">{{report.header}}</a></h5>
+    <p class="card-text">
+      <p class="text-justify test"><wbr>{{report.description}}</wbr></p>
+    </p>
+
+  </div>
+  {% if report.video_link_report %}
+    <iframe height="349" frameborder="0" allowfullscreen src="{{report.video_link_report}}"></iframe>
+  {% else %}
+    {% if report.image_report %}
+      <a href="{% url 'report:detail' pk=report.pk %}">
+          <img src="{{report.image_report.url}}" alt="" class="card-img-top">
+      </a>
+    {% endif %}
+  {% endif %}
+  <img src="{{report.user.profilePicture.url}}" alt="" class="card-img-top">
+  <div class="card-footer">
+    <small class="text-muted">
+    <table class='mytable'>
+      <td>
+        <a href="{% url 'report:detail' pk=report.pk %}"><i class="fas fa-comment fa-2x blue"></i></a>
+        <a class='blue' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.comments.count}}</a>
+      </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>
+        <a class='' href="{% url 'report:like' pk=report.pk %}"><i class="fas fa-thumbs-up fa-lg green"></i></a>
+        <a class='green-text' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.get_likes}}&ensp;</a>
+      </td>
+      <td>
+        <a class='' href="{% url 'report:unlike' pk=report.pk %}"><i class="fas fa-thumbs-down fa-lg red"></i></a>
+        <a class='red' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.get_unlikes}}&ensp;</a>
+      </td>
+    </table>
+    </small>
+  </div>
+</div>

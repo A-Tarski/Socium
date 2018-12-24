@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block body_block %}
+{% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a href="#" class="close">✖</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+<div class="container">
+  <h1> You want delete this post?? </h1>
+  <form method="post">
+    {% csrf_token %}
+    <a href="{%url 'report:detail' pk=report.pk %}" class='btn btn-dark'>CANCEL</a>
+    <input type="submit" class='btn btn-dark' value="DELETE">
+  </form>
+</div>
+
+{% endblock %}

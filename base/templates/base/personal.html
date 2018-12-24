@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% block body_block %}
+<div class="container">
+  <p></p>
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="card border-light mb-3" style="width: 20rem;">
+        <div class="card-body">
+          {% if user.userinformation.profilePicture %}
+              <img src='{{user.userinformation.profilePicture.url}}' alt="NOT FIND" class="card-img-top">
+          {% else %}
+              {% load static %}
+              <img src='{% static "base/img/avatar.png" %}' alt="" class="img-thumbnail img-fluid">
+          {% endif %}
+          <p></p>
+          <h5 class="card-title">@{{user.username}}</h5>
+          <p class="card-text"><small class="text-muted">Зарегистрирован: {{user.date_joined|timesince}}</small></p>
+          <div class="list-group">
+            <a href="{% url 'base:personal' username=user.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              Посты
+              <span class="badge badge-primary badge-pill">{{user.userinformation.find_reports}}</span>
+            </a>
+            <a href="{% url 'base:comments' username=user.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              Комментарии
+              <span class="badge badge-primary badge-pill">{{user.userinformation.find_comments}}</span>
+            </a>
+            <a href="{% url 'base:likes' username=user.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              Оцененные
+              <span class="badge badge-primary badge-pill">{{user.userinformation.find_likes}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      {% if report_list %}
+        {% include 'report/_report_list.html'%}
+      {% else %}
+        {% for comment in comments_list %}
+            {% include 'report/_comment.html'%}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

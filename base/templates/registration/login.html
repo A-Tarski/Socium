@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load bootstrap4 %}
+{% block body_block %}
+
+{% block thank_you %}
+{% endblock %}
+
+  <div class="container">
+
+    {% if isJustRegistered %}
+      <h1>Thank you for registration!!!</h1>
+      <h2>Now you can login with your username and password</h2>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button type="submit" class="btn btn-dark">LOGIN</button>
+      {% endbuttons %}
+    </form>
+  </div>
+{% endblock %}

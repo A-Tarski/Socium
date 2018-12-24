@@ -1,0 +1,20 @@
+<div class="card border-light mb-3" style="width: 40rem;">
+  <div class="card-header">
+    <div class="row">
+      &ensp;
+      {% if comment.user.userinformation.profilePicture %}
+          <img src="{{comment.user.userinformation.profilePicture.url}}" alt="" class="card-img-top avatar-comment">
+      {% else %}
+          {% load static %}
+          <img src='{% static "base/img/avatar.png" %}' alt="" class="card-img-top avatar-comment">
+      {% endif %}
+      &emsp;
+      <h5 ><a class="my-card-link" href="{% url 'base:personal' username=comment.user.username %}" style='text-decoration : none'>@{{comment.user.username}}</a></h5>
+      &ensp; &ensp;
+      <p class="card-text"><small class="text-muted">{{comment.add_date|timesince}}</small></p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p>{{comment.body}}</p>
+  </div>
+</div>
