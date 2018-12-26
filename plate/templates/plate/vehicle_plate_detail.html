@@ -2,45 +2,61 @@
 
 {% block body_block %}
 <p></p>
-<div class="row">
-  <div class="col-sm-4">
-    <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 25rem;">
-      <div class="card-body">
-        <h1 style='border: 2px solid black; border-radius: 0.7rem;'> &ensp; {{ plate.plate_nubmer }}</h1><br>
-        <p>Рейтинг авто:</p>
-        <p>Марка автомобиля:</p>
-        <p>Цвет автомобиля:</p>
-        <div class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Владелец:
-            {% if plate.user_link %}
-              <span>{{plate.user_link}}</span>
-            {% else %}
-              <span>Не зарегистрирован Не зарегистрирован Не зарегистрирован</span>
-            {% endif %}
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Впервые замечен:
-            <span>{{plate.created_date|date:"d-m-Y"}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            Добавлен:
-            <span><a href="{% url 'base:personal' username=plate.created_by.username %}"> @{{plate.created_by}}</a></span>
-          </li>
-          <a href="{% url 'base:personal' username=plate.created_by.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            Постов:
-            <span class="badge badge-primary badge-pill">{{reports.count}}</span>
-          </a>
+<div class="container mycontainer">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 25rem;">
+        <div class="card-body">
+          <h1 style='border: 2px solid black; border-radius: 0.7rem;'> &ensp; {{ plate.plate_nubmer }}</h1><br>
+          <p>Рейтинг авто:</p>
+          <p>Марка автомобиля:</p>
+          <p>Цвет автомобиля:</p>
+          <div class="list-group">
+            <li class="list-group-item">
+              <div class="d-flex bd-highlight align-items-center" style="margin-top: -0.7rem; margin-bottom: -0.7rem;">
+                <div class="mr-auto p-2 bd-highlight">Владелец:</div>
+                {% if plate.user_link %}
+                  <span>@{{plate.user_link}}</span>
+                {% else %}
+                  <div class="p-2 bd-highlight">Не зарегистрирован</div>
+                {% endif %}
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="d-flex bd-highlight align-items-center" style="margin-top: -0.7rem; margin-bottom: -0.7rem;">
+                <div class="mr-auto p-2 bd-highlight">Впервые замечен:</div>
+                <div class="p-2 bd-highlight">{{plate.created_date|date:"d-m-Y"}}</div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="d-flex bd-highlight align-items-center" style="margin-top: -0.7rem; margin-bottom: -0.7rem;">
+                <div class="mr-auto p-2 bd-highlight">Добавлен:</div>
+                <div class="p-2 bd-highlight"><a href="{% url 'base:personal' username=plate.created_by.username %}"> @{{plate.created_by}}</a></div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex bd-highlight align-items-center" style="margin-top: -0.7rem; margin-bottom: -0.7rem;">
+                <div class="mr-auto p-2 bd-highlight">Добавлен:</div>
+                <div class="p-2 bd-highlight"><a href="{% url 'base:personal' username=plate.created_by.username %}"> @{{plate.created_by}}</a></div>
+              </div>
+            </li>
+            <a href="{% url 'base:personal' username=plate.created_by.username %}" class="list-group-item list-group-item-action">
+              <div class="d-flex bd-highlight align-items-center" style="margin-top: -0.7rem; margin-bottom: -0.7rem;">
+                <div class="mr-auto p-2 bd-highlight">Постов:</div>
+                <div class="bd-highlight badge badge-primary badge-pill">{{reports.count}}</div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-8">
+    <div class="col-sm-8">
 
-    {% for report in reports %}
-      {% include 'report/_report.html'%}
-    {% endfor %}
+      {% for report in reports %}
+        {% include 'report/_report.html'%}
+      {% endfor %}
+    </div>
   </div>
+
 </div>
-
 {% endblock %}

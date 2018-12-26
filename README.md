@@ -15,6 +15,7 @@ reviews and reports have more weight by final calculation.
 
 TODO list (back-end part):
   - Refine mobile view
+  - Comments to your reports (show in navbar)
   - Plate validation (only allowed letters)
   - Choose different countries for license plate and appoint validation rules
     for this country

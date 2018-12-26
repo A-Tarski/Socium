@@ -2,6 +2,10 @@
     table-layout: fixed;
     width: 100%;
 }
+.mycontainer{
+  margin: auto;
+}
+
 .blue{
   color: #016bad;
   font-size: 1.2rem;
