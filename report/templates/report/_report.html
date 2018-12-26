@@ -1,4 +1,4 @@
-<div class="card border-light mb-3" style="width: 40rem;">
+<div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 45rem;">
   <div class="card-header">
     <div class="row">
       &ensp;
@@ -36,26 +36,11 @@
   {% endif %}
   <img src="{{report.user.profilePicture.url}}" alt="" class="card-img-top">
   <div class="card-footer">
-    <small class="text-muted">
-    <table class='mytable'>
-      <td>
-        <a href="{% url 'report:detail' pk=report.pk %}"><i class="fas fa-comment fa-2x blue"></i></a>
-        <a class='blue' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.comments.count}}</a>
-      </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td>
-        <a class='' href="{% url 'report:like' pk=report.pk %}"><i class="fas fa-thumbs-up fa-lg green"></i></a>
-        <a class='green-text' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.get_likes}}&ensp;</a>
-      </td>
-      <td>
-        <a class='' href="{% url 'report:unlike' pk=report.pk %}"><i class="fas fa-thumbs-down fa-lg red"></i></a>
-        <a class='red' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.get_unlikes}}&ensp;</a>
-      </td>
-    </table>
-    </small>
+    <a href="{% url 'report:detail' pk=report.pk %}"><i class="fas fa-comment fa-lg blue"></i></a>
+    <a class='blue' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.comments.count}}</a>
+    <a class='red float-right' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.get_unlikes}}</a>
+    <a class='float-right icons' href="{% url 'report:unlike' pk=report.pk %}"><i class="fas fa-thumbs-down fa-lg red"></i></a>
+    <a class='float-right green-text' href="{% url 'report:detail' pk=report.pk %}">&ensp;{{report.get_likes}}&ensp;</a>
+    <a class='float-right icons' href="{% url 'report:like' pk=report.pk %}"><i class="fas fa-thumbs-up fa-lg green"></i></a>
   </div>
 </div>

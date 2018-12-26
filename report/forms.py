@@ -19,6 +19,9 @@ class CommentForm(forms.ModelForm):
     class Meta():
         model = models.Comment
         fields = ('body',)
+        widgets = {
+          'body': forms.Textarea(attrs={'rows':3}),
+        }
         labels = {'body': ""}
 
 class LikeForm(forms.ModelForm):

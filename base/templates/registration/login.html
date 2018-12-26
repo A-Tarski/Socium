@@ -4,20 +4,33 @@
 
 {% block thank_you %}
 {% endblock %}
-
+  <p></p>
   <div class="container">
 
-    {% if isJustRegistered %}
-      <h1>Thank you for registration!!!</h1>
-      <h2>Now you can login with your username and password</h2>
-    {% endif %}
-
-    <form method="post">
-      {% csrf_token %}
-      {% bootstrap_form form %}
-      {% buttons %}
-        <button type="submit" class="btn btn-dark">LOGIN</button>
-      {% endbuttons %}
-    </form>
+      <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 35rem;">
+        <h5 class="card-header">Вход на сайт</h5>
+        <div class="card-body">
+          {% if isJustRegistered %}
+            <h5 class="card-title">Спасибо за регистрацию на нашем сайте </h5>
+            <h6 class="card-subtitle mb-2 text-muted">Надеемся, Вам у нас понравится!</h6>
+            <p></p>
+            <p>Теперь можете войти на сайт, используя Ваш логин и пароль</p>
+            <hr>
+          {% endif %}
+          <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+              <div class="d-flex justify-content-center"><button type="submit" class="btn btn-dark">ВХОД</button></div>
+            {% endbuttons %}
+          </form>
+          <div class="d-flex justify-content-center">
+            <p class="card-text"><small class="text-muted">
+              Нет аккаунта?
+              <a href="{% url 'base:sign_up' %}">Зарегистрироваться!</a>
+            </small></p>
+          </div>
+        </div>
+      </div>
   </div>
 {% endblock %}

@@ -7,7 +7,7 @@ class UserInformation(models.Model):
     carNumber = models.CharField(max_length=10, blank=True)
     profilePicture = models.ImageField(upload_to='base/profile_pictures/', blank=True)
     email = models.EmailField()
-    email2 = models.EmailField()
+    email2 = models.EmailField(help_text='Для подтверждения введите, пожалуйста, Ваш Email ещё раз.')
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):

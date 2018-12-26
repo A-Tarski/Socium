@@ -5,14 +5,20 @@
 {% if userAdditionalForm.error %}
   <p> <strong> ERROR WITH EMAIL POP UP </strong> </p>
 {% endif %}
+  <p></p>
   <div class="container">
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {% bootstrap_form userCreateForm %}
-      {% bootstrap_form userAdditionalForm %}
-      {% buttons %}
-        <button type="submit" class="btn btn-dark">SIGN UP</button>
-      {% endbuttons %}
-    </form>
+    <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 45rem;">
+      <h5 class="card-header">Регистрация</h5>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% bootstrap_form userCreateForm %}
+          {% bootstrap_form userAdditionalForm %}
+          {% buttons %}
+          <div class="d-flex justify-content-center"><button type="submit" class="btn btn-dark">РЕГИСТРАЦИЯ</button></div>
+          {% endbuttons %}
+        </form>
+      </div>
+    </div>
   </div>
 {% endblock %}

@@ -5,7 +5,7 @@
   <p></p>
   <div class="container">
     {% include 'report/_report.html'%}
-    <div class="card border-light mb-3" style="width: 40rem;">
+    <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 45rem;">
       <div class="card-body">
         <table class="mytable">
           <tbody>
@@ -19,20 +19,22 @@
         </table>
       </div>
     </div>
-    <div class="card border-light mb-3" style="width: 40rem;">
+    {% if user.is_authenticated %}
+    <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 45rem;">
       <div class="card-header">
-        <h2>Добавьте Ваш комментарий:</h2>
+        <h4>Добавьте Ваш комментарий:</h4>
       </div>
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
           {% bootstrap_form comment_form %}
           {% buttons %}
-            <button type="submit" class="btn btn-dark float-right">Comment</button>
+            <button type="submit" class="btn btn-dark float-right">Опубликовать</button>
           {% endbuttons %}
         </form>
       </div>
     </div>
+    {% endif %}
 
     {% for comment in comment_list %}
         {% include 'report/_comment.html'%}

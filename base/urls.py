@@ -7,6 +7,7 @@ app_name = "base"
 urlpatterns = [
     path('', include('report.urls')),
     path('login/', views.UserLoginView.as_view(), name='login'),
+    # path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('sign_up/', views.fullUserCreateForm, name='sign_up'),
     # path('personal/', views.UserPersonalPage.as_view(), name='personal'),

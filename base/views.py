@@ -16,7 +16,8 @@ class IndexView(TemplateView):
 
 def fullUserCreateForm(request):
     userAdditionalForm = forms.UserAdditionalInfo(request.POST or None, request.FILES or None)
-    userCreateForm = UserCreationForm(request.POST or None)
+    # userCreateForm = UserCreationForm(request.POST or None)
+    userCreateForm = forms.UserCreating(request.POST or None)
     if request.method == "POST":
         if userAdditionalForm.is_valid() and userCreateForm.is_valid():
             userMain = userCreateForm.save()

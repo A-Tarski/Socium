@@ -2,14 +2,22 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from . import models
+import re
 
 class UserCreating(UserCreationForm):
-    # model = User
-    email = forms.CharField(max_length=100)
-    class Meta(UserCreationForm.Meta):
-        # fields = UserCreationForm.Meta.fields + ('email',)
+
+    username = forms.CharField(max_length=10, label='Имя пользователя', help_text='Не более 10 символов')
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if len(re.findall('[^A-Za-z0-9_]', username)):
+            raise forms.ValidationError("Имя пользователя содержит недопустимые символы")
+        return username
+
+
+    class Meta():
+        model = User
         fields = ('username', 'password1', 'password2')
-    # fields = ('username', 'email', 'password1')
 
 class UserAdditionalInfo(forms.ModelForm):
 
@@ -18,10 +26,9 @@ class UserAdditionalInfo(forms.ModelForm):
         fields = ("email", 'email2', "carNumber", "profilePicture")
         labels = {"carNumber": 'Номер вашего автомобиля (по желанию)',
                   "profilePicture": "Аватар",
-                  "email2": "Email Confirmation",}
+                  "email2": "Подтверждение Email",}
 
     def clean_email2(self):
-        # print("try checks email")
         email1 = self.cleaned_data.get("email")
         email2 = self.cleaned_data.get("email2")
         if email1 and email2 and email1 != email2:

@@ -17,6 +17,11 @@
   font-size: 1.2rem;
 }
 
+.icons{
+  top:3px;
+  position:relative;
+}
+
 .red{
   color: #c82333;
   font-size: 1.2rem;
@@ -75,7 +80,8 @@ a:hover, a:visited, a:link, a:active
 }
 
 *{
-  word-break: break-all;
+  word-break: normal;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .search_item{
   color: red;

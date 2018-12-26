@@ -4,8 +4,8 @@
 <div class="container">
   <p></p>
   <div class="row">
-    <div class="col-sm-5">
-      <div class="card border-light mb-3" style="width: 25rem;">
+    <div class="col-sm-4">
+      <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 25rem;">
         <div class="card-body">
           <h1 style='border: 2px solid black; border-radius: 0.7rem;'> &ensp; {{ plate.plate_nubmer }}</h1><br>
           <p>Рейтинг авто:</p>
@@ -28,7 +28,7 @@
               Добавлен:
               <span><a href="{% url 'base:personal' username=plate.created_by.username %}"> @{{plate.created_by}}</a></span>
             </li>
-            <a href="{% url 'base:personal' username=user.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="{% url 'base:personal' username=plate.created_by.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               Постов:
               <span class="badge badge-primary badge-pill">{{reports.count}}</span>
             </a>
@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <h2>Reports to this Vehicle:</h2><br>
       {% for report in reports %}
         {% include 'report/_report.html'%}
