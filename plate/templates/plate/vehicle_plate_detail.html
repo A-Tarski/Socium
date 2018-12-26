@@ -16,7 +16,7 @@
             {% if plate.user_link %}
               <span>{{plate.user_link}}</span>
             {% else %}
-              <span>Не зарегистрирован</span>
+              <span>Не зарегистрирован Не зарегистрирован Не зарегистрирован</span>
             {% endif %}
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="col-sm-8">
-    <br>
+
     {% for report in reports %}
       {% include 'report/_report.html'%}
     {% endfor %}
