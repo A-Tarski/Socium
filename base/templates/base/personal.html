@@ -7,6 +7,12 @@
 
     <div class="col-lg-4">
       <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 20rem;  min-width: 15rem;">
+        <div class="card-header row">
+          &ensp;
+          <h5>@{{user.username}}</h5>
+          &ensp;
+          <a class='my-card-link' href="{% url 'base:edit' slug=user.username %}"><em>Редактировать</em></a>
+        </div>
         <div class="card-body">
           {% if user.userinformation.profilePicture %}
               <img src='{{user.userinformation.profilePicture.url}}' alt="NOT FIND" class="card-img-top">
@@ -15,7 +21,6 @@
               <img src='{% static "base/img/avatar.png" %}' alt="" class="img-thumbnail img-fluid">
           {% endif %}
           <p></p>
-          <h5 class="card-title">@{{user.username}}</h5>
           <p class="card-text"><small class="text-muted">Зарегистрирован: {{user.date_joined|timesince}}</small></p>
           <div class="list-group">
             <a href="{% url 'base:personal' username=user.username %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">

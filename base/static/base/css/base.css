@@ -24,6 +24,7 @@ a:hover, a:visited, a:link, a:active
         margin-right: 0;
         padding-right: 0px;
         padding-left: 0px;
+        overflow: hidden;
     }
 }
 
@@ -74,6 +75,13 @@ a:hover, a:visited, a:link, a:active
   height: 30px;
   vertical-align: middle;
   border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-profile{
+  width: 10rem;
+  height: 10rem;
+  vertical-align: middle;
   object-fit: cover;
 }
 

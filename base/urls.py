@@ -12,6 +12,8 @@ urlpatterns = [
     path('sign_up/', views.fullUserCreateForm, name='sign_up'),
     # path('personal/', views.UserPersonalPage.as_view(), name='personal'),
     path('personal/<str:username>', views.userPage, name='personal'),
+    # path('personal/<str:username>/edit', views.userUpdateForm, name='edit'),
+    path('personal/<slug:slug>/edit', views.UserUpdateView.as_view(), name='edit'),
     path('personal/<str:username>/comments', views.user_page_comments, name='comments'),
     path('personal/<str:username>/likes', views.user_page_likes, name='likes'),
 ]

@@ -24,9 +24,6 @@ class UserAdditionalInfo(forms.ModelForm):
     class Meta():
         model = models.UserInformation
         fields = ("email", 'email2', "carNumber", "profilePicture")
-        labels = {"carNumber": 'Номер вашего автомобиля (по желанию)',
-                  "profilePicture": "Аватар",
-                  "email2": "Подтверждение Email",}
 
     def clean_email2(self):
         email1 = self.cleaned_data.get("email")
@@ -35,3 +32,9 @@ class UserAdditionalInfo(forms.ModelForm):
             print("FIND EMAL ERROR!!")
             raise forms.ValidationError("Email confirmation didn't match.")
         return email2
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta():
+        model = models.UserInformation
+        fields = ("profilePicture", "carNumber")

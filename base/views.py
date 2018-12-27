@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
@@ -31,6 +31,30 @@ def fullUserCreateForm(request):
 
     return render(request, 'registration/sign_up.html', context)
 
+def userUpdateForm(request, username):
+    if request.method == "POST":
+        userAdditionalForm = forms.UserAdditionalInfo(request.POST, instance=request.user)
+        userCreateForm = forms.UserCreating(request.POST, instance=request.user.userinformation)
+        if userAdditionalForm.is_valid() and userCreateForm.is_valid():
+            userMain = userCreateForm.save()
+            userAdditional = userAdditionalForm.save(commit=False)
+            userAdditional.user = userMain
+            userAdditional.save()
+            return HttpResponseRedirect(reverse('base:personal', kwargs={'username':request.user.username}))
+    else:
+        userAdditionalForm = forms.UserAdditionalInfo(instance=request.user.userinformation)
+        userCreateForm = forms.UserCreating(instance=request.user)
+
+    context = {'userAdditionalForm': userAdditionalForm,
+               'userCreateForm': userCreateForm,}
+
+    return render(request, 'registration/user_edit.html', context)
+
+
+class UserUpdateView(UpdateView):
+    model = models.UserInformation
+    form_class = forms.UserUpdateForm
+    slug_field = 'user__username'
 
 # class UserCreateView(CreateView):
 #     form_class = forms.UserCreating
