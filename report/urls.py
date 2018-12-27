@@ -13,4 +13,5 @@ urlpatterns = [
     # path('<int:pk>', views.DetailReport.as_view(), name='detail'),
     path('<int:pk>', views.report_detail, name='detail'),
     path('<int:pk>/delete/', views.DeleteReport.as_view(), name='delete'),
+    path('<int:pk>/update/', views.UpdateReport.as_view(), name='update'),
 ]

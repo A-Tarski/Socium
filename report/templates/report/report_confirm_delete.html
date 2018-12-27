@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% block body_block %}
+<p></p>
 {% if messages %}
     <ul class="messages">
       {% for message in messages %}
@@ -12,12 +13,19 @@
     </ul>
   {% endif %}
 <div class="container">
-  <h1> You want delete this post?? </h1>
-  <form method="post">
-    {% csrf_token %}
-    <a href="{%url 'report:detail' pk=report.pk %}" class='btn btn-dark'>CANCEL</a>
-    <input type="submit" class='btn btn-dark' value="DELETE">
-  </form>
+  <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 35rem;">
+    <div class="card-body">
+      <h5 style='text-align: center;'> Вы действительно хотите удалить выбранный пост? </h5><br>
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-around">
+          <a href="{%url 'report:detail' pk=report.pk %}" class='btn btn-dark'>CANCEL</a>
+          &ensp;
+          <input type="submit" class='btn btn-dark' value="DELETE">
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

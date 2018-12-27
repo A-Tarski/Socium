@@ -13,8 +13,13 @@ license plate are available to read. Then other users can vote if violation is
 fake or true. Users who create more truly reports have higher rating and their
 reviews and reports have more weight by final calculation.
 
+##Front-end
+
+Bootstrap 4 and their cards system compile most front-end part
+
 TODO list (back-end part):
-  - Refine mobile view
+  - ||Refine mobile view||
+  - Change anonym's avatar placeholder (take some vector plz)
   - Comments to your reports (show in navbar)
   - Plate validation (only allowed letters)
   - Choose different countries for license plate and appoint validation rules

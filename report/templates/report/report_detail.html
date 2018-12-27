@@ -5,18 +5,7 @@
   <p></p>
   <div class="container mycontainer">
     {% include 'report/_report.html'%}
-    <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 45rem;">
-      <div class="card-body">
-        <div class="d-flex justify-content-around">
-          <form action="{% url 'report:like' pk=report.pk %}" class="">
-            <button type="submit" class="btn btn-primary btn-block btn-success" style="text-align: center; width: 8rem;">СОГЛАСЕН</button>
-          </form>
-          <form action="{% url 'report:unlike' pk=report.pk %}" class="">
-            <button type="submit" class="btn btn-primary btn-block btn-danger" style="text-align: center; width: 8rem;">НЕПРАВДА</button>
-          </form>
-        </div>
-      </div>
-    </div>
+    
     {% if user.is_authenticated %}
     <div class="card border-light mb-3 mx-auto" style="width: 100%; max-width: 45rem;">
       <div class="card-header">

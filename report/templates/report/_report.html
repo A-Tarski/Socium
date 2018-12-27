@@ -13,6 +13,16 @@
         <h5 ><a class="my-card-link" href="{% url 'base:personal' username=report.user.username %}" style='text-decoration : none'>@{{report.user.username}}</a></h5>
         <p class="card-text"><small class="text-muted">{{report.created_date|timesince}}</small></p>
       </div>
+      {% if user.is_authenticated %}
+        {% if user.id == report.user.id %}
+        <div class="row">
+          &emsp;
+          <a href="{% url 'report:update' pk=report.pk %}" class=" my-card-link" style="font-size: 0.7rem;"><em>Редактировать</em></a>
+          &emsp;
+          <a href="{% url 'report:delete' pk=report.pk %}" class="my-card-link" style="font-size: 0.7rem;"><em>Удалить</em></a>
+        </div>
+        {% endif %}
+      {% endif %}
       <form action="{% url 'plate:detail' pk=report.vehicle_plate.pk %}" class="ml-auto">
         <button type="submit" class="ml-auto plate">{{report.vehicle_plate.plate_nubmer}}</button>
       </form>
@@ -23,7 +33,6 @@
     <p class="card-text">
       <p class="text-justify test"><wbr>{{report.description}}</wbr></p>
     </p>
-
   </div>
   {% if report.video_link_report %}
     <iframe height="349" frameborder="0" allowfullscreen src="{{report.video_link_report}}"></iframe>

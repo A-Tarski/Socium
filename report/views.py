@@ -18,6 +18,18 @@ from django.core.paginator import Paginator
 # class ReportOwner(AuthorRequiredMixin):
 #     model = models.Report
 
+def plate_find_or_create(plate_to_find):
+    try:
+        plate_qs = Vehicle_plate.objects.get(plate_nubmer=plate_to_find)
+        return plate_qs
+    except Vehicle_plate.DoesNotExist:
+        # create new vehicle plate next_page_number
+        new_plate = Vehicle_plate(plate_nubmer=plate_to_find, created_by=self.request.user)
+        new_plate.save()
+        return new_plate
+        # need add check if such user exist than add user_link
+
+
 class CreateReport(LoginRequiredMixin, CreateView):
     login_url = 'base:login'
     # fields = ('header', 'description','video_link_report', 'image_report',)
@@ -29,14 +41,7 @@ class CreateReport(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         clean_plate = form.cleaned_data['plate_nubmer'].upper()
-        plate_qs = Vehicle_plate.objects.filter(plate_nubmer=clean_plate)
-        if len(plate_qs) > 0:
-            self.object.vehicle_plate = plate_qs[0]
-        else:
-            # create new vehicle plate next_page_number
-            new_plate = Vehicle_plate(plate_nubmer=clean_plate, created_by=self.request.user)
-            new_plate.save()
-            self.object.vehicle_plate = new_plate
+        self.object.vehicle_plate = Vehicle_plate.objects.get_or_create(plate_nubmer=clean_plate)[0]
             # need add check if such user exist than add user_link
         self.object.save()
         return super().form_valid(form)
@@ -82,9 +87,27 @@ class DetailReport(DetailView):
         context['test']='testText'
         return context
 
+class UpdateReport(UpdateView):
+    model = models.Report
+    form_class = forms.ReportForm
+
+    def get_initial(self):
+        initial = super().get_initial()
+        # print(dir(self))
+        initial['plate_nubmer'] = self.object.vehicle_plate
+        return initial
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        clean_plate = form.cleaned_data['plate_nubmer'].upper()
+        self.object.vehicle_plate = Vehicle_plate.objects.get_or_create(plate_nubmer=clean_plate)[0]
+        # need add check if such user exist than add user_link
+        self.object.save()
+        return super().form_valid(form)
+
 class DeleteReport(DeleteView):
     model = models.Report
-    success_url = reverse_lazy('base:index')
+    success_url = reverse_lazy('report:index')
 
     def get_queryset(self):
        qs = super().get_queryset()

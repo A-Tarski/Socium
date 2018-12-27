@@ -1,7 +1,20 @@
-.mytable{
-    table-layout: fixed;
-    width: 100%;
+/* main properties */
+*{
+  word-break: normal;
+  font-family: 'Source Sans Pro', sans-serif;
 }
+
+body{
+  background-color: #e9eaed;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+/* allow to define user's screen size and if it small delete container
+   padding and margin*/
 .mycontainer{
   margin: auto;
 }
@@ -14,7 +27,7 @@
     }
 }
 
-
+/* plate information page list adjustment */
 .plate-list{
   margin: -0.7rem -0.7rem -0.7rem -0.7rem;
   text-align: right;
@@ -37,7 +50,8 @@
 }
 
 .icons{
-  top:3px;
+   /* it's allow to change symbols position about line */
+  top: 3px;
   position:relative;
 }
 
@@ -46,14 +60,7 @@
   font-size: 1.2rem;
 }
 
-.report_image{
-  height: 200px;
-}
-.header-row{
-  max-height:100px;
-  overflow:hidden;
-}
-
+/* avatars properties small and big one*/
 .avatar{
   width: 50px;
   height: 50px;
@@ -70,11 +77,8 @@
   object-fit: cover;
 }
 
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
-}
 
+/* style plate button at report corner */
 .plate{
     color: red;
     border-color: red;
@@ -98,22 +102,13 @@ a:hover, a:visited, a:link, a:active
   color: white;
 }
 
-*{
-  word-break: normal;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-.search_item{
-  color: red;
-}
-
+/* new link colour */
 .my-card-link{
   color: #4c4d4f;
 }
 
-body{
-  background-color: #e9eaed;
-}
 
+/* stackoverflow solution to change placeholder in search field */
 .form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #bec1c6;
     font-style: italic;
@@ -130,3 +125,8 @@ body{
     color: #bec1c6;
     font-style: italic;
   }
+
+.plate-class{
+  color: blue;
+  unicode-range: U+30-39;
+}
