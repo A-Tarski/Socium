@@ -1,8 +1,8 @@
 # Socium
 
-___
 
 Currently available on http://atarski.pythonanywhere.com
+___
 
 Socium is my social project to fix wrong (and right too) behavior of car owners.
 The idea is to store all information about cars, all mishaps, traffic violations
@@ -17,7 +17,7 @@ license plate are available to read. Then other users can vote if violation is
 fake or true. Users who create more truly reports have higher rating and their
 reviews and reports have more weight by final calculation.
 
-##Front-end
+## Front-end
 
 Bootstrap 4 and their cards system compile most front-end part
 
