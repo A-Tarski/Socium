@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from . import forms
@@ -11,12 +10,8 @@ from report.models import Report, Comment, Like
 
 # Create your views here.
 
-class IndexView(TemplateView):
-    template_name = 'base/index.html'
-
 def fullUserCreateForm(request):
     userAdditionalForm = forms.UserAdditionalInfo(request.POST or None, request.FILES or None)
-    # userCreateForm = UserCreationForm(request.POST or None)
     userCreateForm = forms.UserCreating(request.POST or None)
     if request.method == "POST":
         if userAdditionalForm.is_valid() and userCreateForm.is_valid():
@@ -28,7 +23,6 @@ def fullUserCreateForm(request):
             return HttpResponseRedirect(reverse('base:login'))
     context = {'userAdditionalForm': userAdditionalForm,
                'userCreateForm': userCreateForm,}
-
     return render(request, 'registration/sign_up.html', context)
 
 def userUpdateForm(request, username):
@@ -102,7 +96,3 @@ def user_page_likes(request, username):
         'report_list': report_list,
     }
     return render(request, 'base/personal.html', context)
-# from fileupload import views
-#
-# def new_report(request):
-#     return render(request, '')

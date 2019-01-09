@@ -1,5 +1,9 @@
 # Socium
 
+___
+
+Currently available on http://atarski.pythonanywhere.com
+
 Socium is my social project to fix wrong (and right too) behavior of car owners.
 The idea is to store all information about cars, all mishaps, traffic violations
 and so on.
@@ -18,7 +22,7 @@ reviews and reports have more weight by final calculation.
 Bootstrap 4 and their cards system compile most front-end part
 
 TODO list (back-end part):
-  - ||Refine mobile view||
+  - ~~Refine mobile view~~
   - Change anonym's avatar placeholder (take some vector plz)
   - Comments to your reports (show in navbar)
   - Plate validation (only allowed letters)
@@ -26,9 +30,9 @@ TODO list (back-end part):
     for this country
   - Show reports on first page ordered by most liked/reviewed today
   - Allow write messages to other users
-  - Allow users change personal information after registration (+photo changing)
-  - Allow users change their reports after publication
-  - Photo compressing
+  - ~~Allow users change personal information after registration (+photo changing)~~
+  - ~~Allow users change their reports after publication~~
+  - ~~Photo compressing~~
   - Add searching by plate's part in search field
   - Email verification
   - Add hidden fields (?)

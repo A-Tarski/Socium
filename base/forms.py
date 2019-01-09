@@ -12,14 +12,17 @@ class UserCreating(UserCreationForm):
         username = self.cleaned_data.get("username")
         if len(re.findall('[^A-Za-z0-9_]', username)):
             raise forms.ValidationError("Имя пользователя содержит недопустимые символы")
+        if len(username) > 10:
+            raise forms.ValidationError('Имя пользователя превышает максимальную длину 10 симловов')
         return username
-
 
     class Meta():
         model = User
         fields = ('username', 'password1', 'password2')
 
 class UserAdditionalInfo(forms.ModelForm):
+
+    email2 = forms.EmailField(label='Подтверждение Email', help_text='Для подтверждения введите, пожалуйста, Ваш Email ещё раз.')
 
     class Meta():
         model = models.UserInformation
@@ -29,8 +32,7 @@ class UserAdditionalInfo(forms.ModelForm):
         email1 = self.cleaned_data.get("email")
         email2 = self.cleaned_data.get("email2")
         if email1 and email2 and email1 != email2:
-            print("FIND EMAL ERROR!!")
-            raise forms.ValidationError("Email confirmation didn't match.")
+            raise forms.ValidationError("Вы ввели разные Email адреса")
         return email2
 
 class UserUpdateForm(forms.ModelForm):
