@@ -4,6 +4,10 @@ from django.urls import reverse
 from datetime import datetime
 from django.utils import timezone
 from plate.models import Vehicle_plate
+from PIL import Image
+from PIL import ExifTags
+from io import BytesIO
+from django.core.files import File
 
 # Create your models here
 
@@ -31,6 +35,29 @@ class Report(models.Model):
 
     def __str__(self):
         return self.header
+
+    def save(self, *args, **kwargs):
+        if self.image_report:
+            pilImage = Image.open(BytesIO(self.image_report.read()))
+            for orientation in ExifTags.TAGS.keys():
+                if ExifTags.TAGS[orientation] == 'Orientation':
+                    break
+            e = pilImage._getexif()
+            if e is not None:
+                exif=dict(e.items())
+                if exif[orientation] == 3:
+                    pilImage = pilImage.rotate(180, expand=True)
+                elif exif[orientation] == 6:
+                    pilImage = pilImage.rotate(270, expand=True)
+                elif exif[orientation] == 8:
+                    pilImage = pilImage.rotate(90, expand=True)
+
+            output = BytesIO()
+            pilImage.save(output, format='JPEG', quality=50)
+            output.seek(0)
+            self.image_report = File(output, self.image_report.name)
+
+        return super().save(*args, **kwargs)
 
 class Like(models.Model):
     side = models.BooleanField()
