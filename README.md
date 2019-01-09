@@ -4,15 +4,15 @@
 Currently available on http://atarski.pythonanywhere.com
 ___
 
-Socium is my social project to fix wrong (and right too) behavior of car owners.
-The idea is to store all information about cars, all mishaps, traffic violations
+Socium is social project to fix wrong (and right too) behavior of car drivers.
+The idea is to store all information about cars, all mishaps, traffic rules violations
 and so on.
 This information will be accessible for all users. They can check history
-of any car e.g.before buying for example or for car insurance companies
-(make some sales for careful drivers or higher price for bad one).
+of any car e.g. before buying a car or some car's insurance companies can use it
+for promotions (offer sales for careful drivers or higher price for bad one).
 
 All processes of data collection and validation lie on users. If some car owner
-or maybe pedestrian witnessed some violation he add photo or video of target car where
+or maybe pedestrian witnessed some violation he adds photo or video of violator where
 license plate are available to read. Then other users can vote if violation is
 fake or true. Users who create more truly reports have higher rating and their
 reviews and reports have more weight by final calculation.
@@ -21,7 +21,7 @@ reviews and reports have more weight by final calculation.
 
 Bootstrap 4 and their cards system compile most front-end part
 
-TODO list (back-end part):
+## TODO list (back-end part):
   - ~~Refine mobile view~~
   - Change anonym's avatar placeholder (take some vector plz)
   - Comments to your reports (show in navbar)
@@ -36,5 +36,5 @@ TODO list (back-end part):
   - Add searching by plate's part in search field
   - Email verification
   - Add hidden fields (?)
-  - Rating System scratch
+  - **Rating System scratch**
   - Limit post number per day (?)
