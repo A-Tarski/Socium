@@ -41,7 +41,10 @@ class CreateReport(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         clean_plate = form.cleaned_data['plate_nubmer'].upper()
-        self.object.vehicle_plate = Vehicle_plate.objects.get_or_create(plate_nubmer=clean_plate)[0]
+        self.object.vehicle_plate = Vehicle_plate.objects.get_or_create(
+            plate_nubmer=clean_plate,
+            defaults={"created_by": self.request.user},
+        )[0]
             # need add check if such user exist than add user_link
         self.object.save()
         return super().form_valid(form)
